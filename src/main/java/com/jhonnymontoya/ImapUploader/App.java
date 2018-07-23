@@ -55,7 +55,7 @@ public class App {
 						Config.setServer(server);
 					}
 					catch (NoSuchElementException e) {
-						System.out.println("\nError: You haven't specified an IMAP server.\n");
+						System.err.println("\nError: You haven't specified an IMAP server.\n");
 						this.displayHelp();
 						return;
 					}
@@ -66,7 +66,7 @@ public class App {
 						Config.setUser(user);
 					}
 					catch (NoSuchElementException e) {
-						System.out.println("\nError: You haven't specified an user.\n");
+						System.err.println("\nError: You haven't specified an user.\n");
 						this.displayHelp();
 						return;
 					}
@@ -77,7 +77,7 @@ public class App {
 						Config.setPassword(password);
 					}
 					catch (NoSuchElementException e) {
-						System.out.println("\nError: You haven't specified a password.\n");
+						System.err.println("\nError: You haven't specified a password.\n");
 						this.displayHelp();
 						return;
 					}
@@ -88,7 +88,18 @@ public class App {
 						Config.setBasePath(basePath);
 					}
 					catch (NoSuchElementException e) {
-						System.out.println("\nError: You haven't specified a base path.\n");
+						System.err.println("\nError: You haven't specified a base path.\n");
+						this.displayHelp();
+						return;
+					}
+					break;
+				case "-f":
+					try {
+						String imapFolder = stringIterator.next();
+						Config.setImapFolder(imapFolder);
+					}
+					catch (NoSuchElementException e) {
+						System.err.println("\nError: You haven't specified an Imap folder path.\n");
 						this.displayHelp();
 						return;
 					}
@@ -99,7 +110,7 @@ public class App {
 						Config.setLogFileName(logPath);
 					}
 					catch (NoSuchElementException e) {
-						System.out.println("\nError: You haven't specified a log path.\n");
+						System.err.println("\nError: You haven't specified a log path.\n");
 						this.displayHelp();
 						return;
 					}
@@ -135,6 +146,7 @@ public class App {
 		System.out.print("-u user ");
 		System.out.print("-p password ");
 		System.out.print("-b basePath ");
+		System.out.print("[-f IMAP Folder] ");
 		System.out.print("[-d] ");
 		System.out.print("[-l outputLogFile.log] ");
 		System.out.print("[-h]");
@@ -146,6 +158,7 @@ public class App {
 		System.out.println("\t-p\t:Password of the user.");
 		System.out.println("\t-b\t:Base path contanting folders and EML files.");
 		System.out.println("\t-l\t:Path and log file name.");
+		System.out.println("\t-f\t:IMAP Folder eg: Inbox/folder.");
 		System.out.println("\t-d\t:Delete source EML files.");
 		System.out.println("\t-h\t:Displays this help.");
 	}

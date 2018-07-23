@@ -38,6 +38,16 @@ public final class Config {
 	 * Delete EML sources
 	 */
 	private static boolean deleteSources = false;
+	
+	/**
+	 * Imap folder
+	 */
+	private static String imapFolder;
+	
+	/**
+	 * Max messages per upload
+	 */
+	private static int maxMessagesPerUpload = 50;
 
 	/**
 	 * @return the server
@@ -92,6 +102,9 @@ public final class Config {
 	 * @param basePath the basePath to set
 	 */
 	public static void setBasePath(String basePath) {
+		/*if(basePath.length() > 0) {
+			basePath = basePath.charAt(basePath.length() - 1) == File.pathSeparatorChar ? basePath.substring(0,  basePath.length() - 1) : basePath;
+		}*/
 		Config.basePath = basePath;
 	}
 
@@ -121,5 +134,27 @@ public final class Config {
 	 */
 	public static void setDeleteSources(boolean deleteSources) {
 		Config.deleteSources = deleteSources;
+	}
+
+	public static String getImapFolder() {
+		return imapFolder;
+	}
+
+	public static void setImapFolder(String imapFolder) {
+		Config.imapFolder = imapFolder;
+	}
+
+	/**
+	 * @return the maxMessagesPerUpload
+	 */
+	public static int getMaxMessagesPerUpload() {
+		return maxMessagesPerUpload;
+	}
+
+	/**
+	 * @param maxMessagesPerUpload the maxMessagesPerUpload to set
+	 */
+	public static void setMaxMessagesPerUpload(int maxMessagesPerUpload) {
+		Config.maxMessagesPerUpload = maxMessagesPerUpload;
 	}
 }
